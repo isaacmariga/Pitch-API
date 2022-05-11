@@ -38,3 +38,89 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+
+class Pitch (db.Model):
+
+    __tablename__ = 'pitches'
+
+    id = db.Column(db.Integer,primary_key = True)
+    pitch_content = db.Column(db.String(200))
+    group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
+    votes = db.relationship('Vote', backref='pitch', lazy='dynamic')
+
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_pitches(cls,group_id):
+        pitches = Pitch.query.order_by(Pitch.id.desc()).filter_by(group_id=group_id).all()
+        return pitches
+
+
+class Group(db.Model):
+  
+    __tablename__ = 'groups'
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(255))
+    pitches = db.relationship('Pitch', backref='group', lazy='dynamic')
+
+    def save_group(self):
+   
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_groups(cls):
+        groups = Group.query.all()
+
+        return groups
+        
+class Comment(db.Model):
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key = True)
+    comment_content = db.Column(db.String)
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id") )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+
+    def save_comment(self):
+     
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls,pitch_id):
+
+        comments = Comment.query.filter_by(pitch_id=pitch_id).all()
+
+        return comments
+
+class Vote(db.Model):
+  
+    __tablename__ = 'votes'
+
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id") )
+    vote_number =  db.Column(db.Integer)
+
+    def save_vote(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_votes(cls,user_id,pitch_id):
+        votes = Vote.query.filter_by(user_id=user_id, pitch_id=pitch_id).all()
+        return votes
+
+    @classmethod
+    def num_vote(cls,pitch_id):
+
+        found_votes = db.session.query(func.sum(Vote.vote_number))
+        found_votes = found_votes.filter_by(pitch_id=pitch_id).group_by(Vote.pitch_id)
+        votes_list = sum([i[0] for i in found_votes.all()])
