@@ -6,8 +6,7 @@ class Config:
     '''
     SECRET_KEY = '12345'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mariga:password@localhost/pitch3'
-    # SECRET_KEY = '12345'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
 
 
     # #email configurations
