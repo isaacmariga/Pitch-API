@@ -1,0 +1,16 @@
+/* .container {
+    display: grid;
+    place-content: center;
+    place-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.welcome {
+    text-justify: center;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+} */
