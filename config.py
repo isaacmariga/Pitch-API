@@ -17,10 +17,10 @@ class Config:
     # MAIL_PASSWORD = '@temporarypassword1234'
 
 class ProdConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 # class TestConfig(Config):
-    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mariga:password@localhost/_test'
+    # SQLALCHEMY_DATABASE_URI = 'DATABASE_URL'
 
 
 

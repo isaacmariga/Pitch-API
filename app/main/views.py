@@ -15,10 +15,20 @@ def index():
 
     return render_template('index.html', title = title, groups=groups )
 
+@main.route('/groups')
+def groups():
+    title = 'Home'
+
+    groups = Group.get_groups()
+
+    return render_template('groups.html', title = title, groups=groups )
+
 @main.route('/group/new', methods=['GET','POST'])
 @login_required
 def new_group():
     form = GroupForm()
+    groups = Group.get_groups()
+
 
     if form.validate_on_submit():
         name = form.name.data
@@ -28,7 +38,7 @@ def new_group():
         return redirect(url_for('.index'))
 
     title = 'New Group'
-    return render_template('new_group.html', group_form = form)
+    return render_template('new_group.html', group_form = form, groups=groups)
 
 
 @main.route('/group/<int:id>')
@@ -41,7 +51,7 @@ def group(id):
     pitches = Pitch.get_pitches(id)
     title = f'{group.name} page'
 
-    return render_template('group.html', title=title, group=group, pitches=pitches)
+    return render_template('pitch.html', title=title, group=group, pitches=pitches)
 
 @main.route('/group/pitch/new/<int:id>', methods=['GET','POST'])
 @login_required
@@ -79,7 +89,7 @@ def single_pitch(id):
 
     title = f'Pitch {pitch.id}'
 
-    return render_template('pitch.html', title=title, pitch=pitch, comments=comments, total_votes=total_votes)
+    return render_template('comment.html', title=title, pitch=pitch, comments=comments, total_votes=total_votes)
 
 @main.route('/pitch/new/<int:id>', methods=['GET','POST'])
 @login_required

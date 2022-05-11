@@ -1,110 +1,47 @@
 {% extends 'base.html' %} {% import 'macros.html' as macro %}
 
 <!-- Styles block -->
-{% block styles%} {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/pitch.css')}}">
-
-<link href="https://fonts.googleapis.com/css?family=Habibi" rel="stylesheet"> {% endblock %}
+{% block styles%} {{ super() }} {% endblock %}
 
 <!-- Content block -->
 {% block content %}
+
 <title> {{ title }} </title>
+
 <div class="container">
 
     <div class="row">
 
-        <div class="col-md-2 col-lg-2">
+        <div class="col-md-4 col-lg4">
 
-            <a href="/group/{{pitch.group.id}}">
-
-                <i class="glyphicon glyphicon-menu-left back-icon"></i>
-
-            </a>
-
-        </div>
-
-        <div class=" col-xs-10 col-sm-10 col-md-8 col-lg-8">
-
-            <h2>
-
-                <a href="/group/{{pitch.group.id}}" class="pitch-content">
-                        
-                        {{ pitch.pitch_content }} 
-
-                    </a>
-
+            <h2 class="group-header">
+                List of {{group.name}}
             </h2>
 
         </div>
 
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class="col-md-4 col-lg4">
 
-            <div class="row">
+        </div>
 
-                <a href="/pitch/upvote/{{ pitch.id }}">
+        <div class="col-md-4 col-lg4">
 
-                    <i class="glyphicon glyphicon-chevron-up">
-                        </i>
-
-                </a>
-
-            </div>
-
-            <div class="row">
-
-                <i class="votes">
-                        {{ total_votes }}   
-                    </i>
-
-            </div>
-
-            <div class="row">
-
-                <a href="/pitch/downvote/{{ pitch.id }}">
-
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-
-                </a>
-
-            </div>
+            <h2 class="line-create">
+                <a href="/group/pitch/new/{{group.id}}">
+                        Write A Pitch
+                    </a>
+            </h2>
 
         </div>
 
     </div>
 
     <hr>
-
-    <div class="row">
-        <div class="col-md-4 col-lg-4">
-
-            <h2 class="comment-header">
-                List of Comments
-            </h2>
-
-        </div>
-
-        <div class="col-md-4 col-lg-4">
-
-        </div>
-
-        <div class="col-md-4 col-lg-4">
-
-            <h3 class="comment-create">
-                <a href="/pitch/new/{{pitch.id}}">
-                        Add Comment
-                    </a>
-            </h3>
-
-        </div>
-    </div>
-
-    <hr>
-
 
     <ul class="list-unstyled">
-        {{ macro.displayCommentList(comments) }}
+        {{ macro.displayPitchList(pitches) }}
     </ul>
 
-
 </div>
+
 {% endblock %}

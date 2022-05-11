@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% import 'macros.html' as macro %}
+
+<!-- Styles block -->
+{% block styles%} {{ super() }} {% endblock %}
+
+<!-- Content block -->
+{% block content %}
+
+<title> {{ title }} </title>
+
+<div class="container">
+
+    <h2>Choose a category</h2>
+
+    <ul class="list-unstyled">
+        {{ macro.displayGroupList(groups) }}
+    </ul>
+
+
+</div>
+
+{% endblock %}
