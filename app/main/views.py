@@ -6,19 +6,9 @@ from flask_login import current_user
 
 
 
-
-# @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-# @login_required
-# def new_review(id):
-
 # Views
 @main.route('/')
 def index():
-
-    '''
-    View root page function that returns the index page and its data
-    '''
-
     title = 'Home'
 
     groups = Group.get_groups()
@@ -28,11 +18,6 @@ def index():
 @main.route('/group/new', methods=['GET','POST'])
 # @login_required
 def new_group():
-
-    '''
-    View new group route function that returns a page with a form to create a category
-    '''
-
     form = GroupForm()
 
     if form.validate_on_submit():
@@ -48,10 +33,6 @@ def new_group():
 
 @main.route('/group/<int:id>')
 def group(id):
-
-    '''
-    View group route function that returns a list of pitches in the route and allows a user to create a pitch for the selected route
-    '''
     group = Group.query.get(id)
 
     if group is None:
@@ -65,10 +46,6 @@ def group(id):
 @main.route('/group/pitch/new/<int:id>', methods=['GET','POST'])
 # @login_required
 def new_pitch(id):
-
-    '''
-    View new pitch route function that returns a page with a form to create a pitch for the specified category
-    '''
     group = Group.query.filter_by(id=id).first()
 
     if group is None:
@@ -89,10 +66,6 @@ def new_pitch(id):
 
 @main.route('/pitch/<int:id>')
 def single_pitch(id):
-
-    '''
-    View single pitch function that returns a page containing a pitch, its comments and votes
-    '''
     pitch = Pitch.query.get(id)
     
     if pitch is None:
@@ -111,10 +84,6 @@ def single_pitch(id):
 @main.route('/pitch/new/<int:id>', methods=['GET','POST'])
 # @login_required
 def new_comment(id):
-
-    '''
-    View new pitch route function that returns a page with a form to create a pitch for the specified category
-    '''
     pitch = Pitch.query.filter_by(id=id).first()
 
     if pitch is None:
@@ -136,10 +105,6 @@ def new_comment(id):
 @main.route('/pitch/upvote/<int:id>')
 # @login_required
 def upvote(id):
-
-    '''
-    View function that add one to the vote_number column in the votes table
-    '''
     pitch = Pitch.query.get(id)
     new_vote = Vote( pitch=pitch, vote_number=1)
     new_vote.save_vote()
@@ -149,10 +114,6 @@ def upvote(id):
 @main.route('/pitch/downvote/<int:id>')
 # @login_required
 def downvote(id):
-
-    '''
-    View function that add one to the vote_number column in the votes table
-    '''
     pitch = Pitch.query.filter_by(id=id).first()
     new_vote = Vote(pitch=pitch, vote_number= -1)
     new_vote.save_vote()
