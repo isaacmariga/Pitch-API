@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import Group,Pitch,Comment,Vote
 from .forms import PitchForm,CommentForm,GroupForm
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
 
@@ -16,7 +16,7 @@ def index():
     return render_template('index.html', title = title, groups=groups )
 
 @main.route('/group/new', methods=['GET','POST'])
-# @login_required
+@login_required
 def new_group():
     form = GroupForm()
 
@@ -44,7 +44,7 @@ def group(id):
     return render_template('group.html', title=title, group=group, pitches=pitches)
 
 @main.route('/group/pitch/new/<int:id>', methods=['GET','POST'])
-# @login_required
+@login_required
 def new_pitch(id):
     group = Group.query.filter_by(id=id).first()
 
@@ -82,7 +82,7 @@ def single_pitch(id):
     return render_template('pitch.html', title=title, pitch=pitch, comments=comments, total_votes=total_votes)
 
 @main.route('/pitch/new/<int:id>', methods=['GET','POST'])
-# @login_required
+@login_required
 def new_comment(id):
     pitch = Pitch.query.filter_by(id=id).first()
 
@@ -103,7 +103,7 @@ def new_comment(id):
     return render_template('new_comment.html', title=title, comment_form=form)
 
 @main.route('/pitch/upvote/<int:id>')
-# @login_required
+@login_required
 def upvote(id):
     pitch = Pitch.query.get(id)
     new_vote = Vote( pitch=pitch, vote_number=1)
@@ -112,7 +112,7 @@ def upvote(id):
 
 
 @main.route('/pitch/downvote/<int:id>')
-# @login_required
+@login_required
 def downvote(id):
     pitch = Pitch.query.filter_by(id=id).first()
     new_vote = Vote(pitch=pitch, vote_number= -1)

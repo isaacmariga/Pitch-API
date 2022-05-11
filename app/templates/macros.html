@@ -1,0 +1,90 @@
+<!-- Display groups -->
+{% macro displayGroupList(group_list) %} {% for group in group_list %}
+<div class="row">
+
+    <div class="col-md-2 col-lg-2">
+
+    </div>
+
+    <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well category-well">
+
+        <li class="text-center">
+
+            <h3 class="category-name">
+
+                <a href="/group/{{group.id}}">
+                            {{ group.name }}   
+                        </a>
+
+            </h3>
+
+        </li>
+
+    </div>
+
+    <div class="col-md-2 col-lg-2">
+
+    </div>
+
+</div>
+
+{% endfor %} {% endmacro %}
+
+<!-- Display pitches -->
+{% macro displayPitchList(pitch_list) %} {% for pitch in pitch_list %}
+<div class="row">
+
+    <div class="col-md-2 col-lg-2">
+
+    </div>
+
+    <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well pitch-well">
+
+        <li class="text-center">
+
+            <h3>
+
+                <a href="{{url_for('main.single_pitch', id = pitch.id )}}" class="pitch-content">
+                            {{ pitch.pitch_content }}
+                        </a>
+
+            </h3>
+
+        </li>
+
+    </div>
+
+    <div class="col-md-2 col-lg-2">
+
+    </div>
+
+</div>
+
+{% endfor %} {% endmacro %}
+
+
+<!-- Display pitches -->
+{% macro displayCommentList(comment_list) %} {% for comment in comment_list %}
+<div class="row">
+
+    <div class="col-md-2 col-lg-2">
+
+    </div>
+
+    <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well comment-well">
+
+        <li>
+
+            <h4 class="comment-content">{{ comment.comment_content}}</h4>
+
+        </li>
+
+    </div>
+
+    <div class="col-md-2 col-lg-2">
+
+    </div>
+
+</div>
+
+{% endfor %} {% endmacro %}
