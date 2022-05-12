@@ -1,8 +1,7 @@
 {% extends 'base.html'%} {% import 'bootstrap/wtf.html' as wtf%} {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-2"> </div>
-        <div class="col-md-8">
+        <div class="col-md-8" style=" box-shadow: 0px 0px 20px 2px #cacaca; border-radius: 20px; background-color: rgba(255, 255, 255, 0.205); padding :20px;">
             <!--Flash message -->
             {% for message in get_flashed_messages() %}
             <div class="alert alert-danger">

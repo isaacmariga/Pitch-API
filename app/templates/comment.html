@@ -6,7 +6,7 @@
 <!-- Content block -->
 {% block content %}
 <title> {{ title }} </title>
-<div class="container">
+<div class="container" background="{{ url_for( 'static', filename='gradient2.jpg' ) }}" style="background-size: cover; background-repeat: no-repeat;">
 
     <div class="row">
 
@@ -24,7 +24,7 @@
 
             <h2>
 
-                <a href="/group/{{pitch.group.id}}" class="pitch-content">
+                <a href="/group/{{pitch.group.id}}" class="pitch-content" style="color:rgb(44, 44, 44) ;">
                         
                         {{ pitch.pitch_content }} 
 
@@ -86,11 +86,15 @@
 
         <div class="col-md-4 col-lg-4">
 
-            <h3 class="comment-create">
-                <a href="/pitch/new/{{pitch.id}}">
-                        Add Comment
-                    </a>
-            </h3>
+
+
+
+            <a href="/pitch/new/{{pitch.id}}" style="color: white;">
+                <button class="btn" style="padding: 15px 70px 15px 70px;background-color: rgb(170, 97, 170);  font-size: 20px; ">
+               
+                    Add Comment
+           
+                </button>
 
         </div>
     </div>

@@ -8,7 +8,7 @@
 
 <title> {{ title }} </title>
 
-<div class="container">
+<div class="container" background="{{ url_for( 'static', filename='gradient2.jpg' ) }}" style="background-size: cover; background-repeat: no-repeat;">
 
     <div class="row">
 
@@ -26,11 +26,14 @@
 
         <div class="col-md-4 col-lg4">
 
-            <h2 class="line-create">
-                <a href="/group/pitch/new/{{group.id}}">
+
+            <a href="/group/pitch/new/{{group.id}}" style="color: black;">
+                <button class="btn " style="padding: 15px 70px 15px 70px; background-color: transparent; border-style: solid; border-color: purple;font-size: 20px;">
+                    
                         Write A Pitch
-                    </a>
-            </h2>
+                
+                </button></a>
+            </a>
 
         </div>
 

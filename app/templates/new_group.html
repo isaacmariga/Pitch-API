@@ -8,11 +8,9 @@
 {% block content %}
 <title> {{ title }} </title>
 
-<div class="container">
+<div class="container" background="{{ url_for( 'static', filename='gradient2.jpg' ) }}" style="background-size: cover; background-repeat: no-repeat;">
 
     <div class="row">
-
-
 
         <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 create-group">
 
@@ -20,14 +18,14 @@
 
         </div>
 
+        <div style="padding-top: 100px; justify-items: center;">
+            <h2>Choose a category</h2>
 
-        <h2>Choose a category</h2>
+            <ul class="list-unstyled">
+                {{ macro.displayGroupList(groups) }}
+            </ul>
 
-        <ul class="list-unstyled">
-            {{ macro.displayGroupList(groups) }}
-        </ul>
-
-
+        </div>
 
 
     </div>

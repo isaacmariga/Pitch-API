@@ -7,42 +7,44 @@
 <!-- Content block -->
 {% block content %}
 
-<body>
+<body background="{{ url_for( 'static', filename='gradient2.jpg' ) }}" style="background-size: cover; background-repeat: no-repeat;">
     <title> {{ title }} </title>
 
-    <div class="container">
+    <div class=" container " style="display: grid; place-content: center; height:100vh;">
 
-        <div class="row">
+        <div style=" box-shadow: 0px 0px 20px 2px #e7e7e7; border-radius: 20px; background-color: rgba(255, 255, 255, 0.089);">
 
-            <div class="col-md-4 col-lg-4 welcome">
-                <h2 class="category-header">
+            <div class="row welcome " style=" display: grid; place-content: center;justify-items: center " ;>
+                <h2 style="font-size: 70px; padding: 30px; color: black;">
                     Welcome to Pitch Central
                 </h2>
-                <p> Make your 60 seconds Count</p>
+                <p style="font-size: 40px; "> Make your 60 seconds Count</p>
             </div>
 
 
-            <div class="row option">
-                <div class="col-md-4 col-lg-4">
-                    <h2 class="category-create">
-                        <a href="/group/new">
+            <div style="display: grid; place-content: center; grid-template-columns: 1fr 1fr; justify-items: center; margin:100px ">
+                <div>
+                    <a href="/group/new " style="color: white;">
+                        <button class="btn" style="padding: 15px 70px 15px 70px;background-color: rgb(170, 97, 170);  font-size: 20px; ">
+                       
                         Create Pitch
+                   
+                        </button>
                     </a>
-                    </h2>
 
                 </div>
-                <div class="col-md-4 col-lg-4">
-                    <h2 class="category-create">
-                        <a href="/groups">
+                <div>
+                    <a href="/groups " style="color: black;">
+                        <button class="btn " style="padding: 15px 70px 15px 70px; background-color: transparent; border-style: solid; border-color: purple;font-size: 20px;">
+                        
                         Read Pitch
-                    </a>
-                    </h2>
+                    
+                    </button></a>
 
                 </div>
             </div>
+
         </div>
-
-
 
     </div>
 </body>
