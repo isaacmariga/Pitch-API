@@ -13,9 +13,8 @@
         </button>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="display: grid; grid-template-columns:1fr 1fr 1fr 1fr">
                 <li><a href="/group/new" style="color: black;">Create Pitch</a></li>
-
 
                 {% if current_user.is_authenticated %}
                 <li style="color: black ;padding:10px; ">{{current_user.username}}</li>

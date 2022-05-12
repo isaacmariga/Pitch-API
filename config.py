@@ -9,19 +9,8 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
 
 
-    # #email configurations
-    # MAIL_SERVER ='smtp.googlemail.com'
-    # MAIL_PORT = 587
-    # MAIL_USE_TLS = True
-    # MAIL_USERNAME = 'aizakmariga@gmail.com'
-    # MAIL_PASSWORD = '@temporarypassword1234'
-
 class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
-
-# class TestConfig(Config):
-    # SQLALCHEMY_DATABASE_URI = 'DATABASE_URL'
-
 
 
 class DevConfig(Config):

@@ -48,10 +48,13 @@
             </div>
 
             <div class="row">
-
-                <i class="votes">
+                {% if total_votes > 0 %}
+                <i class="votes" style="color:green;">
                         {{ total_votes }}   
-                    </i>
+                    </i> {% else %}
+                <i class="votes" style="color: red;">
+                    {{ total_votes }}   
+                </i> {% endif %}
 
             </div>
 

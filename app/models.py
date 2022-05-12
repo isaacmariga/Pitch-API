@@ -123,4 +123,6 @@ class Vote(db.Model):
 
         found_votes = db.session.query(func.sum(Vote.vote_number))
         found_votes = found_votes.filter_by(pitch_id=pitch_id).group_by(Vote.pitch_id)
-        votes_list = sum([i[0] for i in found_votes.all()])
+        total_votes = sum([i[0] for i in found_votes.all()])
+
+        return total_votes
