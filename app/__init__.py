@@ -12,8 +12,6 @@ db = SQLAlchemy()
 
 def create_app(config_name):
     app = Flask(__name__)
-    SECRET_KEY = '12345'
-    UPLOADED_PHOTOS_DEST ='app/static/photos'
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
     # app.config.from_object(Config)
