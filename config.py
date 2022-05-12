@@ -10,7 +10,7 @@ class Config:
 
 
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
+    SQLALCHEMY_DATABASE_URI = "DATABASE_URL"
 
 
 class DevConfig(Config):
