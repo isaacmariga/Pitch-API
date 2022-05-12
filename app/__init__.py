@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from config import config_options
+# from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
@@ -12,22 +12,23 @@ db = SQLAlchemy()
 
 def create_app(config_name):
     app = Flask(__name__)
-
+    SECRET_KEY = '12345'
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
     # app.config.from_object(Config)
 
     
-    ENV = 'dev'
+    # ENV = 'dev'
 
-    if ENV == 'dev':
-        app.debug = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
-    else:
-        app.debug = False
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
+    # if ENV == 'dev':
+    #     app.debug = True
+    #     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
+    # else:
+    #     app.debug = False
+    #     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://mariga:password@localhost/pitch4'
 
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialising flask extensions
     bootstrap = Bootstrap(app)
