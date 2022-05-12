@@ -126,3 +126,5 @@ class Vote(db.Model):
         total_votes = sum([i[0] for i in found_votes.all()])
 
         return total_votes
+
+print ('vote')
