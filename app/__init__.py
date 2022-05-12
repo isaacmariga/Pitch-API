@@ -17,7 +17,17 @@ def create_app(config_name):
     app.config.from_object(config_options[config_name])
     # app.config.from_object(Config)
 
+    ENV = 'dev'
 
+    if ENV == 'dev':
+        app.debug = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://mariga:password@localhost:5435/pitch4'
+    else:
+        app.debug = False
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://mariga:password@localhost:5435/pitch4'
+
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
 
     # Initialising flask extensions
     bootstrap = Bootstrap(app)
